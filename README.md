@@ -26,6 +26,15 @@ Identify and describe at least 3 or more features you integrated from the provid
 - Class-based custom data structures
 - Modular code using appropriately utilizing functions and methods, including return values
 
+### Software development features
+
+- Unit tests
+- Regular expression (regex) for input validation
+- Use of a dictionary or list data structure
+- Write a text log file
+- Code comments relecting use of SOLID principles
+- Use of a new generic class
+
 ## Building and running this project
 
-Placeholder. Include any special instructions for reviewers to run your project.
+Placeholder. Instructions to run the project.
