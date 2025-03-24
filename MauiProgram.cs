@@ -10,9 +10,9 @@ namespace Microclimate_Explorer
             builder
                 .UseMauiApp<App>();
 
-
             builder.Services.AddSingleton(Geolocation.Default);
             builder.Services.AddSingleton<LocationService>();
+            builder.Services.AddSingleton<GeocodingService>();
 
 #if DEBUG
             builder.Logging.AddDebug();

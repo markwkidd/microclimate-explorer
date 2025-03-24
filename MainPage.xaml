@@ -25,6 +25,18 @@
                 Clicked="OnGetLocationClicked"
                 HorizontalOptions="Fill" />
 
+            <Label Text="Enter a location name:" />
+
+            <Entry 
+                x:Name="LocationNameEntry"
+                Placeholder="City, Country or Address"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Geocode Location"
+                Clicked="OnGeocodeLocationClicked"
+                HorizontalOptions="Fill" />
+
             <Label Text="Or enter coordinates manually:" />
 
             <Entry 
