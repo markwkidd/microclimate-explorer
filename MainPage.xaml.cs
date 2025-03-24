@@ -1,25 +1,62 @@
-﻿namespace Microclimate_Explorer
+﻿using Microsoft.Maui.Devices.Sensors;
+
+namespace Microclimate_Explorer
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private readonly LocationService _locationService;
 
-        public MainPage()
+        public MainPage(LocationService locationService)
         {
             InitializeComponent();
+            _locationService = locationService;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            count++;
+            base.OnAppearing();
+            await CheckAndRequestLocationPermission();
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private async Task CheckAndRequestLocationPermission()
+        {
+            try
+            {
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                if (status != PermissionStatus.Granted)
+                {
+                    status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                }
+
+                if (status == PermissionStatus.Granted)
+                {
+                    // Optional: You can retrieve location immediately after permission is granted
+                    var (latitude, longitude) = await _locationService.GetCurrentLocationAsync();
+
+                    // TODO: Update UI or perform actions with location
+                    // For example:
+                    // LocationLabel.Text = $"Lat: {latitude}, Lon: {longitude}";
+                }
+                else
+                {
+                    // Handle permission denied
+                    await DisplayAlert("Permission Denied",
+                        "Location access is required for this app to function properly.",
+                        "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle any exceptions
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+
+        // Optional: Add a button to manually trigger location retrieval
+        private async void OnGetLocationClicked(object sender, EventArgs e)
+        {
+            await CheckAndRequestLocationPermission();
         }
     }
-
 }

@@ -24,12 +24,11 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Closer to nature through science" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+            <Button 
+                Text="Get Location" 
+                Clicked="OnGetLocationClicked"
+                HorizontalOptions="Fill"
+                SemanticProperties.Hint="Prompts the user for the location to use" />
         </VerticalStackLayout>
     </ScrollView>
 
