@@ -6,11 +6,17 @@ namespace Microclimate_Explorer
 {
     public class LocationService
     {
-        // Async method to get current location
         public async Task<(double Latitude, double Longitude)> GetCurrentLocationAsync()
         {
             try
             {
+                var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+
+                if (status != PermissionStatus.Granted)
+                {
+                    return (0, 0);
+                }
+
                 var location = await Geolocation.GetLocationAsync(new GeolocationRequest
                 {
                     DesiredAccuracy = GeolocationAccuracy.Best,
@@ -21,34 +27,27 @@ namespace Microclimate_Explorer
                     ? (location.Latitude, location.Longitude)
                     : (0, 0);
             }
-            catch (FeatureNotSupportedException)
-            {
-                // Handle not supported on device
-                return (0, 0);
-            }
-            catch (FeatureNotEnabledException)
-            {
-                // Handle not enabled on device
-                return (0, 0);
-            }
-            catch (PermissionException)
-            {
-                // Handle permission exception
-                return (0, 0);
-            }
             catch (Exception)
             {
-                // Handle any other exceptions
                 return (0, 0);
             }
         }
 
-        // Optional method for manual location entry
-        public async Task<(double Latitude, double Longitude)> GetLocationByAddressAsync(string address)
+        // Method to manually enter location
+        public (double Latitude, double Longitude) GetLocationByCoordinates(string latitudeStr, string longitudeStr)
         {
-            // Placeholder for geocoding - you would typically use a geocoding service
-            // This is a mock implementation
-            return await Task.FromResult((0.0, 0.0));
+            if (double.TryParse(latitudeStr, out double latitude) &&
+                double.TryParse(longitudeStr, out double longitude))
+            {
+                // Optional: Add basic validation for coordinate ranges
+                if (latitude >= -90 && latitude <= 90 &&
+                    longitude >= -180 && longitude <= 180)
+                {
+                    return (latitude, longitude);
+                }
+            }
+
+            return (0, 0);
         }
     }
 }

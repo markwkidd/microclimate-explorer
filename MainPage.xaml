@@ -4,31 +4,50 @@
              x:Class="Microclimate_Explorer.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
+        <VerticalStackLayout 
             Padding="30,0"
             Spacing="25">
+
             <Image
                 Source="logo_horizontal.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="seedling growing under a cloudy sky" />
 
-            <Label
-                Text="Microclimate Explorer"
+            <Label 
+                Text="Location Services"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            <Label
-                Text="Closer to nature through science"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Closer to nature through science" />
-
-            <Button 
-                Text="Get Location" 
+            <Button
+                x:Name="GetLocationBtn"
+                Text="Get Current Location" 
                 Clicked="OnGetLocationClicked"
+                HorizontalOptions="Fill" />
+
+            <Label Text="Or enter coordinates manually:" />
+
+            <Entry 
+                x:Name="LatitudeEntry"
+                Placeholder="Latitude"
+                Keyboard="Numeric"
+                HorizontalOptions="Fill" />
+
+            <Entry 
+                x:Name="LongitudeEntry"
+                Placeholder="Longitude"
+                Keyboard="Numeric"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Use Manual Coordinates"
+                Clicked="OnManualLocationClicked"
+                HorizontalOptions="Fill" />
+
+            <Label 
+                x:Name="LocationResultLabel"
                 HorizontalOptions="Fill"
-                SemanticProperties.Hint="Prompts the user for the location to use" />
+                HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
     </ScrollView>
 
