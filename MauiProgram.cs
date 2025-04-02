@@ -13,6 +13,7 @@ namespace Microclimate_Explorer
             builder.Services.AddSingleton(Geolocation.Default);
             builder.Services.AddSingleton<LocationService>();
             builder.Services.AddSingleton<GeocodingService>();
+            builder.Services.AddSingleton<WebScrapingService>();
 
 #if DEBUG
             builder.Logging.AddDebug();
