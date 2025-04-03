@@ -2,7 +2,7 @@
 
 namespace Microclimate_Explorer
 {
-    public partial class MainPage : ContentPage
+    public partial class LocationPage : ContentPage
     {
         private readonly LocationService _locationService;
         private readonly GeocodingService _geocodingService;
@@ -10,7 +10,7 @@ namespace Microclimate_Explorer
 
         public ObservableCollection<WeatherStation> WeatherStations { get; set; } = new ObservableCollection<WeatherStation>();
 
-        public MainPage(LocationService locationService, GeocodingService geocodingService, WebScrapingService webScrapingService)
+        public LocationPage(LocationService locationService, GeocodingService geocodingService, WebScrapingService webScrapingService)
         {
             InitializeComponent();
             _locationService = locationService;
