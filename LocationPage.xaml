@@ -5,10 +5,14 @@
 
     <ScrollView>
         <VerticalStackLayout 
-            Padding="30,0"
-            Spacing="25">
+            Padding="5,0,0,0"
+            Spacing="10"
+            HorizontalOptions="Start">
 
-            <HorizontalStackLayout Spacing="25" HorizontalOptions="Center">
+            <HorizontalStackLayout
+                Spacing="25"
+                HorizontalOptions="Start">
+                
                 <VerticalStackLayout VerticalOptions="Center">
                     <Label  
                         Text="Welcome! The first step is to enter GPS coordinates for the microclimate you are interested in exploring."
@@ -19,7 +23,7 @@
                         FontFamily="Arial"
                         FontSize="18" />
                     <Label  
-                        Text="There are several options available for entering coordinates. If entering the coordinates manually, use a decimal format (e.g., 37.7749, -80.4194)."
+                        Text="There are several options available for entering coordinates."
                         VerticalOptions="Center"  
                         HorizontalOptions="Start" 
                         Margin="0,10,0,0" 
@@ -79,6 +83,14 @@
                 Text="Manual GPS coordinate entry"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
+
+            <Label  
+                Text="When entering the coordinates manually, use a decimal format (e.g., 37.7749, -80.4194)."
+                VerticalOptions="Center"  
+                HorizontalOptions="Start" 
+                Margin="0,10,0,0" 
+                FontFamily="Arial"
+                FontSize="18" />
 
             <Entry 
                 x:Name="LatitudeEntry"
