@@ -10,10 +10,13 @@
             HorizontalOptions="Start">
 
             <HorizontalStackLayout
-                Spacing="25"
+                Spacing="10"
                 HorizontalOptions="Start">
-                
-                <VerticalStackLayout VerticalOptions="Center">
+
+                <VerticalStackLayout
+                    Spacing="10"                 
+                    VerticalOptions="Center">
+                    
                     <Label  
                         Text="Welcome! The first step is to enter GPS coordinates for the microclimate you are interested in exploring."
                         VerticalOptions="Center"  
@@ -22,27 +25,33 @@
                         WidthRequest="400"
                         FontFamily="Arial"
                         FontSize="18" />
-                    <Label  
-                        Text="There are several options available for entering coordinates."
+
+                    <Label 
+                        x:Name="LocationResultLabel"
+                        Text="Active coordinates: None entered yet"                       
                         VerticalOptions="Center"  
                         HorizontalOptions="Start" 
-                        Margin="0,10,0,0" 
+                        Margin="0,0,0,0" 
                         WidthRequest="400"
+                        HeightRequest="60"
                         FontFamily="Arial"
-                        FontSize="18" />
+                        FontSize="24" />
+
                 </VerticalStackLayout>
+
                 <Image  
                    Source="logo_horizontal.png"  
                    HeightRequest="185"  
                    Aspect="AspectFit"  
-                   SemanticProperties.Description="seedling growing under a cloudy sky" />  
+                   SemanticProperties.Description="seedling growing under a cloudy sky" />
             </HorizontalStackLayout>
 
-            <Label 
-                x:Name="LocationResultLabel"
-                HorizontalOptions="Fill"
-                HorizontalTextAlignment="Center" />
-
+            <Label  
+                  Text="There are several options available for entering coordinates."
+                  HorizontalOptions="Start" 
+                  Margin="0,10,0,0" 
+                  FontFamily="Arial"
+                  FontSize="18" />
             <Label 
                 Text="Option 1: Request location from this device"
                 Style="{StaticResource SubHeadline}"
@@ -61,7 +70,9 @@
 
             <Label Text="Search for GPS coordinates by location name:" />
 
-            <HorizontalStackLayout Spacing="10">
+            <HorizontalStackLayout
+                Spacing="10">
+                
                 <Entry 
                     x:Name="LocationNameEntry"
                     Placeholder="Address, Zip Code, City and State, etc."
@@ -80,7 +91,7 @@
                 HorizontalOptions="Fill" />
 
             <Label 
-                Text="Manual GPS coordinate entry"
+                Text="Option 3: Manual GPS coordinate entry"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
