@@ -8,36 +8,77 @@
             Padding="30,0"
             Spacing="25">
 
-            <Image
-                Source="logo_horizontal.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="seedling growing under a cloudy sky" />
+            <HorizontalStackLayout Spacing="25" HorizontalOptions="Center">
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label  
+                        Text="Welcome! The first step is to enter GPS coordinates for the microclimate you are interested in exploring."
+                        VerticalOptions="Center"  
+                        HorizontalOptions="Start" 
+                        Margin="0,0,0,0" 
+                        WidthRequest="400"
+                        FontFamily="Arial"
+                        FontSize="18" />
+                    <Label  
+                        Text="There are several options available for entering coordinates. If entering the coordinates manually, use a decimal format (e.g., 37.7749, -80.4194)."
+                        VerticalOptions="Center"  
+                        HorizontalOptions="Start" 
+                        Margin="0,10,0,0" 
+                        WidthRequest="400"
+                        FontFamily="Arial"
+                        FontSize="18" />
+                </VerticalStackLayout>
+                <Image  
+                   Source="logo_horizontal.png"  
+                   HeightRequest="185"  
+                   Aspect="AspectFit"  
+                   SemanticProperties.Description="seedling growing under a cloudy sky" />  
+            </HorizontalStackLayout>
 
             <Label 
-                Text="Location Services"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+                x:Name="LocationResultLabel"
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center" />
+
+            <Label 
+                Text="Option 1: Request location from this device"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
 
             <Button
                 x:Name="GetLocationBtn"
-                Text="Get Current Location" 
+                Text="Query Device Location" 
                 Clicked="OnGetLocationClicked"
                 HorizontalOptions="Fill" />
 
-            <Label Text="Enter a location name:" />
+            <Label 
+                Text="Option 2: Geocoding"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
 
-            <Entry 
-                x:Name="LocationNameEntry"
-                Placeholder="City, Country or Address"
-                HorizontalOptions="Fill" />
+            <Label Text="Search for GPS coordinates by location name:" />
+
+            <HorizontalStackLayout Spacing="10">
+                <Entry 
+                    x:Name="LocationNameEntry"
+                    Placeholder="Address, Zip Code, City and State, etc."
+                    HorizontalOptions="FillAndExpand" />
+
+                <Entry 
+                    x:Name="ApiKeyEntry"
+                    Placeholder="OpenCage API Key"
+                    HorizontalOptions="FillAndExpand" />
+                
+            </HorizontalStackLayout>
 
             <Button
-                Text="Geocode Location"
+                Text="Search for location"
                 Clicked="OnGeocodeLocationClicked"
                 HorizontalOptions="Fill" />
 
-            <Label Text="Or enter coordinates manually:" />
+            <Label 
+                Text="Manual GPS coordinate entry"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
 
             <Entry 
                 x:Name="LatitudeEntry"
@@ -55,11 +96,6 @@
                 Text="Use Manual Coordinates"
                 Clicked="OnManualLocationClicked"
                 HorizontalOptions="Fill" />
-
-            <Label 
-                x:Name="LocationResultLabel"
-                HorizontalOptions="Fill"
-                HorizontalTextAlignment="Center" />
 
             <!-- Weather Station Section -->
             <Label 

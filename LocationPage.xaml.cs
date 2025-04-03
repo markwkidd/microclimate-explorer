@@ -25,6 +25,7 @@ namespace Microclimate_Explorer
             try
             {
                 var locationName = LocationNameEntry.Text?.Trim();
+                var apiKey = ApiKeyEntry.Text?.Trim();
 
                 if (string.IsNullOrWhiteSpace(locationName))
                 {
@@ -32,7 +33,13 @@ namespace Microclimate_Explorer
                     return;
                 }
 
-                var (latitude, longitude) = await _geocodingService.GeocodeLocationAsync(locationName);
+                if (string.IsNullOrWhiteSpace(apiKey))
+                {
+                    await DisplayAlert("Error", "Please enter an OpenCage API key", "OK");
+                    return;
+                }
+
+                var (latitude, longitude) = await _geocodingService.GeocodeLocationAsync(locationName, apiKey);
 
                 if (latitude == 0 && longitude == 0)
                 {
@@ -42,7 +49,7 @@ namespace Microclimate_Explorer
                 }
                 else
                 {
-                    LocationResultLabel.Text = $"Geocoded Location: {latitude}, {longitude}";
+                    LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
 
                     // Optionally, pre-fill the latitude and longitude entries
                     LatitudeEntry.Text = latitude.ToString();
@@ -54,6 +61,7 @@ namespace Microclimate_Explorer
                 await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
+
 
         private async void OnGetLocationClicked(object sender, EventArgs e)
         {
@@ -69,7 +77,7 @@ namespace Microclimate_Explorer
                 }
                 else
                 {
-                    LocationResultLabel.Text = $"Location: {latitude}, {longitude}";
+                    LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
                 }
             }
             catch (Exception ex)
@@ -91,7 +99,7 @@ namespace Microclimate_Explorer
             }
             else
             {
-                LocationResultLabel.Text = $"Manual Location: {latitude}, {longitude}";
+                LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
             }
         }
 

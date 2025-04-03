@@ -7,14 +7,13 @@ namespace Microclimate_Explorer
 {
     public class GeocodingService
     {
-        private const string ApiKey = "YOUR_OPENCAGE_API_KEY"; // Replace with your OpenCage API key
         private const string BaseUrl = "https://api.opencagedata.com/geocode/v1/json";
 
-        public async Task<(double Latitude, double Longitude)> GeocodeLocationAsync(string locationName)
+        public async Task<(double Latitude, double Longitude)> GeocodeLocationAsync(string locationName, string apiKey)
         {
             using (var httpClient = new HttpClient())
             {
-                var url = $"{BaseUrl}?q={Uri.EscapeDataString(locationName)}&key={ApiKey}";
+                var url = $"{BaseUrl}?q={Uri.EscapeDataString(locationName)}&key={apiKey}";
                 var response = await httpClient.GetStringAsync(url);
                 var json = JsonDocument.Parse(response);
 

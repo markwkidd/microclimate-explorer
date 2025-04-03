@@ -9,7 +9,7 @@
 
     <FlyoutItem Title="Location">
         <ShellContent
-            Title="Set Location"
+            Title="Microclimate Explorer v0.1"
             ContentTemplate="{DataTemplate local:LocationPage}"
             Route="LocationPage" />
     </FlyoutItem>
