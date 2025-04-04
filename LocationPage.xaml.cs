@@ -33,17 +33,18 @@ namespace Microclimate_Explorer
             await NavigateToWeatherStationPage();
         }
 
-        private void OnManualLocationClicked(object sender, EventArgs e)
+        private async void OnManualLocationClicked(object sender, EventArgs e)
         {
             var (latitude, longitude) = _locationService.GetLocationByCoordinates(
                 LatitudeEntry.Text,
                 LongitudeEntry.Text
             );
 
-            if (latitude == 0 && longitude == 0)
+            if (latitude == -999 || longitude == -999)
             {
-                LocationResultLabel.Text = "Invalid coordinates. Please enter valid numbers.";
                 NextButton.IsEnabled = false;
+                await DisplayAlert("Error", "Invalid coordinates have been entered.", "OK");
+                return;
             }
             else
             {
@@ -54,13 +55,14 @@ namespace Microclimate_Explorer
             }
         }
 
+
         private async void OnGetLocationClicked(object sender, EventArgs e)
         {
             try
             {
                 var (latitude, longitude) = await _locationService.GetCurrentLocationAsync();
 
-                if (latitude == 0 && longitude == 0)
+                if (latitude == -999 && longitude == -999)
                 {
                     await DisplayAlert("Location Error",
                         "Could not retrieve current location. Please enter coordinates manually.",
@@ -91,12 +93,14 @@ namespace Microclimate_Explorer
 
                 if (string.IsNullOrWhiteSpace(locationName))
                 {
+                    NextButton.IsEnabled = false;
                     await DisplayAlert("Error", "Please enter a location name", "OK");
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(apiKey))
                 {
+                    NextButton.IsEnabled = false;
                     await DisplayAlert("Error", "Please enter an OpenCage API key", "OK");
                     return;
                 }
