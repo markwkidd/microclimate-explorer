@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Microclimate_Explorer.WeatherStationPage"
+             Title="Weather Station">
+
+    <VerticalStackLayout Padding="10">
+        <Label Text="Weather Station Data" 
+               FontSize="24" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start" />
+
+        <Label x:Name="CoordinatesLabel" 
+               FontSize="18" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start" />
+
+        <!-- Add more UI elements to display weather data here -->
+
+    </VerticalStackLayout>
+</ContentPage>
