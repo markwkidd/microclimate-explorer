@@ -59,9 +59,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Resources\Examples\eastern-ky-weather-stations.htm">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
+	  <None Remove="Resources\eastern-ky-weather-stations.htm" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\eastern-ky-weather-stations.htm">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>

@@ -31,7 +31,13 @@ namespace Microclimate_Explorer
                 LoadingIndicator.IsVisible = true;
                 LoadingIndicator.IsRunning = true;
 
-                string sampleFilePath = Path.Combine(FileSystem.AppDataDirectory, "Resources", "Examples", "eastern-ky-weather-stations.htm");
+                string sampleFilePath = Path.Combine(FileSystem.AppDataDirectory, "Resources", "eastern-ky-weather-stations.htm");
+
+                if (!File.Exists(sampleFilePath))
+                {
+                    await DisplayAlert("Error", $"Sample data file not found at {sampleFilePath}", "OK");
+                    return;
+                }
 
                 var weatherStations = await _webScrapingService.LoadWeatherDataFromFileAsync(sampleFilePath);
 
@@ -49,6 +55,7 @@ namespace Microclimate_Explorer
                 LoadingIndicator.IsVisible = false;
             }
         }
+
 
         private async void OnScrapeFindUClicked(object sender, EventArgs e)
         {
