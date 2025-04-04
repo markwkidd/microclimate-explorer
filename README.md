@@ -20,9 +20,21 @@ Microclimate Explorer make use of this data ultimately aggregated by the Meterol
 - Modular code with object-oriented data structures
 - OpenCage geocoding API
 - FindU weather station data web API scraper (scraper used with permission)
-- Sample FindU data is distributed with the .NET solution where it is scraped from local file storage
 
-#### .Net Packages for Windows 10
+### Software development features
+
+- Use of a list data structure
+- Package sample FindU data with the .NET solution that can be parsed from local file storage
+- TODO: Write a text log file
+- TODO: Regular expression (regex) for input validation
+- TODO: Code comments relecting use of SOLID principles
+- TODO: Use of a new generic class
+
+## Building and running this project
+
+On the developer's Visual Studio workstation, it was necessary to install Selenium via NuGet.
+
+### .Net Packages for Windows 10
 
 ```
    Top-level Package                         Requested   Resolved
@@ -32,16 +44,3 @@ Microclimate Explorer make use of this data ultimately aggregated by the Meterol
    > System.Net.Http.Json                    7.0.1       7.0.1   
 ```
 
-On the developer's Visual Studio workstation, it was necessary to install Selenium via NuGet.
-
-### Software development features
-
-- TODO: Regular expression (regex) for input validation
-- Use of a list data structure
-- TODO: Write a text log file
-- Code comments relecting use of SOLID principles
-- Use of a new generic class
-
-## Building and running this project
-
-Placeholder. Instructions to run the project.
