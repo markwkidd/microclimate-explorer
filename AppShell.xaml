@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Microclimate_Explorer"
-    Shell.FlyoutBehavior="Locked"
-    Title="Microclimate Explorer">
+    Shell.FlyoutBehavior="Disabled"
+    Title="Microclimate Explorer v0.1">
 
     <FlyoutItem Title="Location">
         <ShellContent
@@ -13,8 +13,10 @@
             Route="LocationPage" />
     </FlyoutItem>
 
-    <ShellContent
-        Title="Weather Station"
-        ContentTemplate="{DataTemplate local:WeatherStationPage}"
-        Route="WeatherStationPage" />
+    <FlyoutItem Title="Weather Stations">
+        <ShellContent
+            Title="Weather Stations"
+            ContentTemplate="{DataTemplate local:WeatherStationPage}"
+            Route="WeatherStationPage" />
+    </FlyoutItem>
 </Shell>

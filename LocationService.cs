@@ -14,7 +14,7 @@ namespace Microclimate_Explorer
 
                 if (status != PermissionStatus.Granted)
                 {
-                    return (0, 0);
+                    return (-999, -999);
                 }
 
                 var location = await Geolocation.GetLocationAsync(new GeolocationRequest
@@ -29,7 +29,7 @@ namespace Microclimate_Explorer
             }
             catch (Exception)
             {
-                return (0, 0);
+                return (-999, -999);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Microclimate_Explorer
                 }
             }
 
-            return (0, 0);
+            return (-999, -999);
         }
         public static bool ValidateCoordinates(double latitude, double longitude)
         {

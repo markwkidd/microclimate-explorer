@@ -16,6 +16,12 @@ namespace Microclimate_Explorer
             BindingContext = this; // Ensure the BindingContext is set to the current instance
         }
 
+        public WeatherStationPage()
+        {
+            InitializeComponent();
+            BindingContext = this;
+        }
+
         private async void OnLoadSampleDataClicked(object sender, EventArgs e)
         {
             try
