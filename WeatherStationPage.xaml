@@ -7,6 +7,13 @@
     <VerticalStackLayout
         Padding="10">
 
+        <Button
+               x:Name="BackButton"
+               Text="Back"
+               Clicked="OnBackButtonClicked"
+               WidthRequest="300"
+               HorizontalOptions="Start" />
+
         <Label x:Name="CoordinatesLabel" 
                FontSize="18" 
                HorizontalOptions="Center" 

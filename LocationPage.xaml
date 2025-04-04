@@ -16,13 +16,13 @@
                 <VerticalStackLayout
                     Spacing="10"                 
                     VerticalOptions="Center">
-                    
+
                     <Label  
                         Text="Welcome! The first step is to determine GPS coordinates for the microclimate you are interested in exploring."
                         VerticalOptions="Center"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="400"
+                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="18" />
 
@@ -31,7 +31,7 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="400"
+                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
@@ -41,7 +41,7 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="400"
+                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
@@ -49,7 +49,7 @@
                         x:Name="NextButton"
                         Text="Next"
                         Clicked="OnNextButtonClicked"
-                        WidthRequest="400"
+                        WidthRequest="300"
                         HorizontalOptions="Start"
                         VerticalOptions="End"
                         IsEnabled="False" />
@@ -63,134 +63,122 @@
                    SemanticProperties.Description="seedling growing under a cloudy sky" />
             </HorizontalStackLayout>
 
-            <Label  
-                  Text="There are several options for entering coordinates."
-                  HorizontalOptions="Start" 
-                  Margin="0,10,0,0" 
-                  FontFamily="Arial"
-                  FontSize="18" />
-            <Label 
+            <Border Margin="5" Padding="10" Stroke="LightGray">
+                <VerticalStackLayout
+                    Spacing="5">
+
+                    <Label 
                 Text="Option 1: Manual GPS coordinate entry"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
-            <Label  
-                Text="When entering the coordinates manually, use a decimal format (e.g., 37.7749, -80.4194)."
+                    <Label  
+                Text="When entering the coordinates manually, please use a decimal format (e.g., 37.77)."
                 VerticalOptions="Center"  
                 HorizontalOptions="Start" 
                 Margin="0,10,0,0" 
                 FontFamily="Arial"
                 FontSize="18" />
 
-            <Entry 
+                    <HorizontalStackLayout
+                        Spacing="5">
+
+                        <Entry 
                 x:Name="LatitudeEntry"
                 Placeholder="Latitude"
                 Keyboard="Numeric"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Start"
+                WidthRequest="300"/>
 
-            <Entry 
+                        <Entry 
                 x:Name="LongitudeEntry"
                 Placeholder="Longitude"
                 Keyboard="Numeric"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Start"
+                WidthRequest="300"/>
 
-            <Button
-                Text="Use Manual Coordinates"
-                Clicked="OnManualLocationClicked"
-                HorizontalOptions="Fill" />
-            
-            <Label 
+                    </HorizontalStackLayout>
+
+
+                    <Button
+                    Text="Use Manual Coordinates"
+                    Clicked="OnManualLocationClicked"
+                    WidthRequest="350"
+                    HorizontalOptions="Start" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Margin="5" Padding="10" Stroke="LightGray">
+                <VerticalStackLayout
+                    Spacing="5">
+
+                    <Label 
                 Text="Option 2: Request location from this device"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
-            <Button
+                    <Label  
+                Text="This application must be granted access to location services for this option."
+                VerticalOptions="Center"  
+                HorizontalOptions="Start" 
+                Margin="0,10,0,0" 
+                FontFamily="Arial"
+                FontSize="18" />
+
+                    <Button
                 x:Name="GetLocationBtn"
-                Text="Query Device Location" 
+                Text="Request Device Location" 
                 Clicked="OnGetLocationClicked"
-                HorizontalOptions="Fill" />
+                WidthRequest="350"
+                HorizontalOptions="Start" />
+                </VerticalStackLayout>
+            </Border>
 
-            <Label 
-                Text="Option 3: Geocoding"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
+            <Border Margin="5" Padding="10" Stroke="LightGray">
+                <VerticalStackLayout
+        Spacing="5">
 
-            <Label Text="Search the OpenCage database by location name such as street address, city, state, country:" />
+                    <Label 
+            Text="Option 3: Geocoding"
+            Style="{StaticResource SubHeadline}"
+            SemanticProperties.HeadingLevel="Level2" />
+                    
+                    <Label  
+            Text="Search the OpenCage database by location name such as street address, city, state, country."
+            VerticalOptions="Center"  
+            HorizontalOptions="Start" 
+            Margin="0,10,0,0" 
+            FontFamily="Arial"
+            FontSize="18" />
 
-            <HorizontalStackLayout
-                Spacing="10"/>
+                    <Entry 
+                x:Name="LocationNameEntry"
+                Placeholder="Location name"
+                HorizontalOptions="FillAndExpand" />
 
-            <Entry 
-                    x:Name="LocationNameEntry"
-                    Placeholder="Location name"
-                    HorizontalOptions="FillAndExpand" />
+                        <Entry 
+                x:Name="ApiKeyEntry"
+                Placeholder="OpenCage API Key"
+                HorizontalOptions="FillAndExpand" />
 
-            <Entry 
-                    x:Name="ApiKeyEntry"
-                    Placeholder="OpenCage API Key"
-                    HorizontalOptions="FillAndExpand" />
+                    <HorizontalStackLayout
+Spacing="10">
+                        <Button
+            Text="Search for location by name"
+            Clicked="OnGeocodeLocationClicked"
+            WidthRequest="350"
+            HorizontalOptions="Start" />
 
+                    <Button
+            Text="Save OpenCage API Key"
+            IsEnabled="False"
+            WidthRequest="350"
+            HorizontalOptions="Start" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
 
-
-            <Button
-                Text="Search for location"
-                Clicked="OnGeocodeLocationClicked"
-                HorizontalOptions="Fill" />
-
-            <!-- Weather Station Section -->
-            <Label 
-                Text="Weather Stations"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-            <Button
-                x:Name="LoadSampleDataBtn"
-                Text="Load Sample Weather Data" 
-                Clicked="OnLoadSampleDataClicked"
-                HorizontalOptions="Fill" />
-
-            <Entry 
-                x:Name="WeatherUrlEntry"
-                Placeholder="Enter URL of weather data"
-                HorizontalOptions="Fill" />
-
-            <Button
-                x:Name="ScrapeFindUBtn"
-                Text="Scrape Web Data" 
-                Clicked="OnScrapeWebClicked"
-                HorizontalOptions="Fill" />
-
-            <ActivityIndicator 
-                x:Name="LoadingIndicator" 
-                IsRunning="False" 
-                IsVisible="False" 
-                HorizontalOptions="Center" />
-
-            <CollectionView 
-                x:Name="WeatherStationsCollectionView"
-                ItemsSource="{Binding WeatherStations}"
-                HeightRequest="300"
-                SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="5" Padding="10" Stroke="LightGray">
-                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
-                                <Label Grid.Column="0" Grid.Row="0" Text="Station:" FontAttributes="Bold" />
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding CallSign}" />
-
-                                <Label Grid.Column="0" Grid.Row="1" Text="Temp:" FontAttributes="Bold" />
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Temperature, StringFormat='{0}°F'}" />
-
-                                <Label Grid.Column="0" Grid.Row="2" Text="Wind:" FontAttributes="Bold" />
-                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding WindSpeed, StringFormat='{0} mph'}" />
-
-                                <Label Grid.Column="0" Grid.Row="3" Text="Humidity:" FontAttributes="Bold" />
-                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Humidity, StringFormat='{0}%'}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            </Border>
+                
 
         </VerticalStackLayout>
     </ScrollView>

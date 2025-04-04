@@ -113,5 +113,10 @@ namespace Microclimate_Explorer
                 WeatherStations.Add(station);
             }
         }
+
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }
