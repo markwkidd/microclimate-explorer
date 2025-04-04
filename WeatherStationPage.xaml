@@ -7,32 +7,74 @@
     <VerticalStackLayout
         Padding="10">
 
-        <Button
-               x:Name="BackButton"
-               Text="Back"
-               Clicked="OnBackButtonClicked"
-               WidthRequest="300"
-               HorizontalOptions="Start" />
+        <HorizontalStackLayout
+                Spacing="10"
+                HorizontalOptions="Start">
 
-        <Label x:Name="CoordinatesLabel" 
-               FontSize="18" 
-               HorizontalOptions="Center" 
-               VerticalOptions="Start" />
+            <VerticalStackLayout
+                    Spacing="10"                 
+                    VerticalOptions="Center">
 
-        <Entry 
-                x:Name="WeatherUrlEntry"
-                Placeholder="Enter URL of weather data"
-                HorizontalOptions="Fill" />
+                <Label  
+                    Text="Data courtesy of findU/WXQA, the Citizen Weather Observer Program, NOAA, and OpenCage."
+                    VerticalOptions="Center"  
+                    HorizontalOptions="Start" 
+                    Margin="0,0,0,0" 
+                    WidthRequest="350"
+                    FontFamily="Arial"
+                    FontSize="18" />
+                
+                <Label 
+                        Text="Active coordinates:"
+                        VerticalOptions="End"  
+                        HorizontalOptions="Start" 
+                        Margin="0,0,0,0" 
+                        WidthRequest="350"
+                        FontFamily="Arial"
+                        FontSize="24" />
+
+                <Label x:Name="CoordinatesLabel" 
+                        VerticalOptions="End"  
+                        HorizontalOptions="Start" 
+                        Margin="0,0,0,0" 
+                        WidthRequest="350"
+                        FontFamily="Arial"
+                        FontSize="24" />
+
+                <Label x:Name="WeatherUrlLabel"
+                        VerticalOptions="End"
+                        HorizontalOptions="Start"
+                        Margin="0,0,0,0"
+                        WidthRequest="350"
+                        FontFamily="Arial"
+                        FontSize="24" />
+
+                <Button
+       x:Name="BackButton"
+       Text="Back"
+       Clicked="OnBackButtonClicked"
+       WidthRequest="300"
+       HorizontalOptions="Start" />
+
+
+            </VerticalStackLayout>
+
+            <Image  
+                   Source="farmstead.png"  
+                   HeightRequest="185"  
+                   Aspect="AspectFit"  
+                   SemanticProperties.Description="friendly comic-style drawing of house, garden, and orchard" />
+        </HorizontalStackLayout>
 
         <Button
                 x:Name="ScrapeFindUBtn"
-                Text="Query FindU Database" 
+                Text="Query Weather Station Database" 
                 Clicked="OnScrapeFindUClicked"
                 HorizontalOptions="Fill" />
 
         <Button
                 x:Name="LoadSampleDataBtn"
-                Text="Load Sample FindU Station Data" 
+                Text="Process Sample FindU Station Data"
                 Clicked="OnLoadSampleDataClicked"
                 HorizontalOptions="Fill" />
 

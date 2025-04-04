@@ -6,14 +6,16 @@ namespace Microclimate_Explorer
     public partial class WeatherStationPage : ContentPage
     {
         private readonly WebScrapingService _webScrapingService;
+        private string _weatherStationUrl;
         public ObservableCollection<WeatherStation> WeatherStations { get; set; } = new ObservableCollection<WeatherStation>();
 
         public WeatherStationPage(double latitude, double longitude, WebScrapingService webScrapingService)
         {
             InitializeComponent();
             _webScrapingService = webScrapingService;
-            CoordinatesLabel.Text = $"Latitude: {latitude}, Longitude: {longitude}";
-            BindingContext = this; // Ensure the BindingContext is set to the current instance
+            CoordinatesLabel.Text = $"{latitude}, {longitude}";
+            _weatherStationUrl = $"http://www.findu.com/cgi-bin/wxnear.cgi?lat={latitude}&lon={longitude}";
+            BindingContext = this;
         }
 
         public WeatherStationPage()
@@ -76,11 +78,11 @@ namespace Microclimate_Explorer
         {
             try
             {
-                var url = WeatherUrlEntry.Text?.Trim();
+                var url = _weatherStationUrl?.Trim();
 
                 if (string.IsNullOrWhiteSpace(url))
                 {
-                    await DisplayAlert("Error", "Please enter a URL to scrape", "OK");
+                    await DisplayAlert("Error", "The findU request URL has not been generated yet", "OK");
                     return;
                 }
 
