@@ -24,7 +24,7 @@
 		<ApplicationTitle>Microclimate Explorer</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.microclimateexplorer</ApplicationId>
+		<ApplicationId>org.handbarrow.microclimateexplorer</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -59,11 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\eastern-ky-weather-stations.htm" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Resources\eastern-ky-weather-stations.htm">
+	  <Content Include="Resources\sample-findu-data-weather-stations.htm">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

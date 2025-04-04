@@ -31,11 +31,11 @@ namespace Microclimate_Explorer
                 LoadingIndicator.IsVisible = true;
                 LoadingIndicator.IsRunning = true;
 
-                string sampleFilePath = Path.Combine(FileSystem.AppDataDirectory, "Resources", "eastern-ky-weather-stations.htm");
+                string sampleFilePath = Path.Combine(FileSystem.AppDataDirectory, "Resources", "sample-findu-data-weather-stations.htm");
 
                 if (!File.Exists(sampleFilePath))
                 {
-                    await DisplayAlert("Error", $"Sample data file not found at {sampleFilePath}", "OK");
+                    await DisplayAlert("Error", $"Sample data file not found. Copy the file to {sampleFilePath}", "OK");
                     return;
                 }
 
@@ -43,11 +43,11 @@ namespace Microclimate_Explorer
 
                 FindNearestStations(weatherStations);
 
-                await DisplayAlert("Success", $"Loaded weather stations from local example data.", "OK");
+                await DisplayAlert("Success", $"Loaded weather stations from local data.", "OK");
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to load sample data: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Failed to load local sample data: {ex.Message}", "OK");
             }
             finally
             {
@@ -76,7 +76,7 @@ namespace Microclimate_Explorer
 
                 FindNearestStations(weatherStations);
 
-                await DisplayAlert("Success", $"Scraped {weatherStations.Count} nearby weather stations from the web.", "OK");
+                await DisplayAlert("Success", $"Successfully polled nearby weather stations from the remote database.", "OK");
             }
             catch (Exception ex)
             {

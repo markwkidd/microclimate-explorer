@@ -17,15 +17,15 @@
                 HorizontalOptions="Start">
 
                 <VerticalStackLayout
-                    Spacing="10"                 
+                    Spacing="10"
+                    WidthRequest="450"                  
                     VerticalOptions="Center">
 
                     <Label  
-                    Text="Data via findU/WXQA, the Citizen Weather Observer Program, NOAA, and OpenCage."
+                    Text="Data is provided, processed, or stored by findU/WXQA, the Citizen Weather Observer Program, NOAA, and OpenCage."
                     VerticalOptions="Center"  
                     HorizontalOptions="Start" 
                     Margin="0,0,0,0" 
-                    WidthRequest="350"
                     FontFamily="Arial"
                     FontSize="18" />
 
@@ -34,7 +34,6 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
@@ -42,13 +41,12 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
                     <Button
        x:Name="BackButton"
-       Text="Back"
+       Text="&lt;&lt; Previous"
        Clicked="OnBackButtonClicked"
        WidthRequest="300"
        HorizontalOptions="Start" />
@@ -58,7 +56,7 @@
 
                 <Image  
                    Source="farmstead.png"  
-                   HeightRequest="185"  
+                   HeightRequest="200"  
                    Aspect="AspectFit"  
                    SemanticProperties.Description="friendly comic-style drawing of house, garden, and orchard" />
             </HorizontalStackLayout>
@@ -72,8 +70,16 @@
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
+                    <Label  
+                    Text="If the test data file, sample-findu-data-weather-stations.htm, is not found, the error message will provide the path where it should be copied from the repository."
+                    VerticalOptions="Center"  
+                    HorizontalOptions="Start" 
+                    Margin="0,0,0,0" 
+                    FontFamily="Arial"
+                    FontSize="18" />
+
                     <HorizontalStackLayout
-    Spacing="5">
+    Spacing="10">
 
                         <Button
                 x:Name="ScrapeFindUBtn"
@@ -132,7 +138,7 @@
 
                                     <Label Grid.Column="2" Grid.Row="1" Text="Humidity:" FontAttributes="Bold" Margin="0,0,5,0" />
                                     <Label Grid.Column="3" Grid.Row="1" Text="{Binding Humidity, StringFormat='{0}%'}" />
-                                    
+
                                     <Label Grid.Column="4" Grid.Row="1" Text="Wind:" FontAttributes="Bold" Margin="0,0,5,0" />
                                     <Label Grid.Column="5" Grid.Row="1" Text="{Binding WindSpeed, StringFormat='{0} mph'}" />
 

@@ -6,13 +6,13 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=User Name" Version="0.0.0.0" />
+  <Identity Name="Microclimate Explorer" Publisher="Handbarrow" Version="0.1" />
 
   <mp:PhoneIdentity PhoneProductId="F0B4CA83-9491-4825-BDE0-806F705B3644" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>$placeholder$</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
+    <DisplayName>Microclimate Explorer</DisplayName>
+    <PublisherDisplayName>Handbarrow</PublisherDisplayName>
     <Logo>$placeholder$.png</Logo>
   </Properties>
 

@@ -16,6 +16,7 @@
 
                 <VerticalStackLayout
                     Spacing="10"                 
+                    WidthRequest="450"                  
                     VerticalOptions="Center">
 
                     <Label  
@@ -23,7 +24,6 @@
                         VerticalOptions="Center"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="18" />
 
@@ -32,7 +32,6 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
@@ -42,13 +41,12 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
 
                     <Button
                         x:Name="NextButton"
-                        Text="Next"
+                        Text="Next &gt;&gt;"
                         Clicked="OnNextButtonClicked"
                         WidthRequest="300"
                         HorizontalOptions="Start"
