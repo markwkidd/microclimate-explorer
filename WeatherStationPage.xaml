@@ -5,7 +5,8 @@
              Title="Weather Stations">
 
     <VerticalStackLayout
-        Padding="10">
+        Padding="10"
+        VerticalOptions="FillAndExpand">
 
         <HorizontalStackLayout
                 Spacing="10"
@@ -16,14 +17,14 @@
                     VerticalOptions="Center">
 
                 <Label  
-                    Text="Data courtesy of findU/WXQA, the Citizen Weather Observer Program, NOAA, and OpenCage."
+                    Text="Data via findU/WXQA, the Citizen Weather Observer Program, NOAA, and OpenCage."
                     VerticalOptions="Center"  
                     HorizontalOptions="Start" 
                     Margin="0,0,0,0" 
                     WidthRequest="350"
                     FontFamily="Arial"
                     FontSize="18" />
-                
+
                 <Label 
                         Text="Active coordinates:"
                         VerticalOptions="End"  
@@ -37,14 +38,6 @@
                         VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
-                        WidthRequest="350"
-                        FontFamily="Arial"
-                        FontSize="24" />
-
-                <Label x:Name="WeatherUrlLabel"
-                        VerticalOptions="End"
-                        HorizontalOptions="Start"
-                        Margin="0,0,0,0"
                         WidthRequest="350"
                         FontFamily="Arial"
                         FontSize="24" />
@@ -66,17 +59,36 @@
                    SemanticProperties.Description="friendly comic-style drawing of house, garden, and orchard" />
         </HorizontalStackLayout>
 
-        <Button
-                x:Name="ScrapeFindUBtn"
-                Text="Query Weather Station Database" 
-                Clicked="OnScrapeFindUClicked"
-                HorizontalOptions="Fill" />
+        <Border Margin="0,20,0,0" Padding="10" Stroke="LightGray">
+            <VerticalStackLayout
+                    Spacing="5">
 
-        <Button
+                <Label 
+                Text="Query live FindU database or use local test data file?"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+                <HorizontalStackLayout
+    Spacing="5">
+
+                    <Button
+                x:Name="ScrapeFindUBtn"
+                Text="Query Live FindU Database" 
+                Clicked="OnScrapeFindUClicked"
+                HorizontalOptions="Start"
+                WidthRequest="300"/>
+
+                    <Button
                 x:Name="LoadSampleDataBtn"
-                Text="Process Example FindU Station Data"
+                Text="Query Test Data"
                 Clicked="OnLoadSampleDataClicked"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Start"
+                WidthRequest="300"/>
+
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
 
         <ActivityIndicator 
                 x:Name="LoadingIndicator" 
@@ -84,40 +96,46 @@
                 IsVisible="False" 
                 HorizontalOptions="Center" />
 
-        <CollectionView 
+            <CollectionView 
                 x:Name="WeatherStationsCollectionView"
                 ItemsSource="{Binding WeatherStations}"
-                HeightRequest="300"
-                SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" Padding="10" Stroke="LightGray">
-                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                            <Label Grid.Column="0" Grid.Row="0" Text="Station:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding CallSign}" />
+                SelectionMode="Single"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="5" Padding="10" Stroke="LightGray">
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                                <Label Grid.Column="0" Grid.Row="0" Text="Station:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding CallSign}" />
 
-                            <Label Grid.Column="0" Grid.Row="1" Text="Temp:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding Temperature, StringFormat='{0}°F'}" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="Temp:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Temperature, StringFormat='{0}°F'}" />
 
-                            <Label Grid.Column="0" Grid.Row="2" Text="Wind:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding WindSpeed, StringFormat='{0} mph'}" />
+                                <Label Grid.Column="0" Grid.Row="2" Text="Wind:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding WindSpeed, StringFormat='{0} mph'}" />
 
-                            <Label Grid.Column="0" Grid.Row="3" Text="Humidity:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="3" Text="{Binding Humidity, StringFormat='{0}%'}" />
+                                <Label Grid.Column="0" Grid.Row="3" Text="Humidity:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Humidity, StringFormat='{0}%'}" />
 
-                            <Label Grid.Column="0" Grid.Row="4" Text="Distance:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="4" Text="{Binding Distance, StringFormat='{0} miles'}" />
+                                <Label Grid.Column="0" Grid.Row="4" Text="Distance:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Distance, StringFormat='{0} miles'}" />
 
-                            <Label Grid.Column="0" Grid.Row="5" Text="Direction:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="5" Text="{Binding Direction}" />
+                                <Label Grid.Column="0" Grid.Row="5" Text="Direction:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Direction}" />
 
-                            <Label Grid.Column="0" Grid.Row="6" Text="Last update:" FontAttributes="Bold" />
-                            <Label Grid.Column="1" Grid.Row="6" Text="{Binding ReportAge}" />
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Label Grid.Column="0" Grid.Row="6" Text="Last update:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="6" Text="{Binding ReportAge}" />
+
+                                <Label Grid.Column="0" Grid.Row="7" Text="Latitude:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="7" Text="{Binding Latitude}" />
+
+                                <Label Grid.Column="0" Grid.Row="8" Text="Longitude:" FontAttributes="Bold" />
+                                <Label Grid.Column="1" Grid.Row="8" Text="{Binding Longitude}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>

@@ -24,6 +24,8 @@ namespace Microclimate_Explorer
         public double? RainSinceMidnight { get; set; }
         public double? Humidity { get; set; }
         public double? Barometer { get; set; }
+        public double Latitude { get; set; } = -999;
+        public double Longitude { get; set; } = -999;
     }
 
     public class WebScrapingService
@@ -36,6 +38,8 @@ namespace Microclimate_Explorer
             _chromeOptions.AddArgument("--headless");
             _chromeOptions.AddArgument("--disable-gpu");
             _chromeOptions.AddArgument("--no-sandbox");
+            _chromeOptions.AddArgument("--blink-settings=imagesEnabled=false");
+            _chromeOptions.AddArgument("--disable-css");
         }
 
         public async Task<List<WeatherStation>> ScrapeWeatherStationsAsync(string url)
@@ -124,7 +128,7 @@ namespace Microclimate_Explorer
             return null;
         }
 
-        // Method to load weather data from local HTML file
+        // load weather data from local HTML file
         public async Task<List<WeatherStation>> LoadWeatherDataFromFileAsync(string filePath)
         {
             return await Task.Run(() => {
@@ -132,5 +136,6 @@ namespace Microclimate_Explorer
                 return ScrapeWeatherStations(fileUrl);
             });
         }
+
     }
 }

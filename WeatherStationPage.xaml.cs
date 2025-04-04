@@ -82,12 +82,11 @@ namespace Microclimate_Explorer
             }
         }
 
-        private void FindNearestStations(List<WeatherStation> weatherStations)
+        private async void FindNearestStations(List<WeatherStation> weatherStations)
         {
             WeatherStations.Clear();
 
-            // Sort the weather stations by distance and take the four closest
-            var closestStations = weatherStations.OrderBy(ws => ws.Distance).Take(4);
+            var closestStations = weatherStations.OrderBy(ws => ws.Distance).Take(4).ToList();
 
             foreach (var station in closestStations)
             {
