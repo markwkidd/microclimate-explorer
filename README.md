@@ -4,13 +4,19 @@
 
 This application will find the four closest Citizen Weather Observer Program stations to any longitude and latitude. Put another way, Microclimate Explorer is a utility for accessing and utilizing geographically-granular climate data.
 
-Uses include precise data for agricultural planning and other situations where it is valuable to be able to directly access weather station data for a designated area.
+Whereas there are many solutions for accessing aggregated and averaged weather data offered at high resolution, it is more difficult to access non-aggregated data from weather sensors. 
+
+Uses are myriad, but the inspiration for this application comes from agriculture and land use planning.
 
 ## Data sources
 
-The most important dataset is citizen weather stations. This data is aggregated by the APRS-IS (Automatic Packet Reporting System-Internet Service).
+The most important dataset is citizen weather stations that are part of the CWOP network and provide data to Meterological Assimilation Data Ingest System (MADIS).
 
-Microclimate Explorer make use of this data ultimately aggregated by the Meterological Assimilation Data Ingest System (MADIS). This data was generally processed by the findU database of weather, position, telemetry, and message data.
+### Using discontinued FindU API
+
+**Please note:** Microclimate Explorer v0.1 relies on the FindU database and API for geographical search of CWOP stations. During the course of development, the author communicated with NOAA, which hosts FindU because of trouble using some functionality. NOAA staff indicated that FindU was remaining online, but was no longer being maintained and some parts have failed.
+
+None of the several other weather station APIs offer geographical search functionality, but the raw public dataset includes coordinates and it is reaonable that another solution could be developed.
 
 ## API Keys
 
