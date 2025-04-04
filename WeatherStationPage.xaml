@@ -2,20 +2,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Microclimate_Explorer.WeatherStationPage"
-             Title="Weather Station">
+             Title="Weather Stations">
 
-    <VerticalStackLayout Padding="10">
-        <Label Text="Weather Station Data" 
-               FontSize="24" 
-               HorizontalOptions="Center" 
-               VerticalOptions="Start" />
+    <VerticalStackLayout
+        Padding="10">
 
         <Label x:Name="CoordinatesLabel" 
                FontSize="18" 
                HorizontalOptions="Center" 
                VerticalOptions="Start" />
 
-        <!-- Add more UI elements to display weather data here -->
+        <Entry 
+                x:Name="WeatherUrlEntry"
+                Placeholder="Enter URL of weather data"
+                HorizontalOptions="Fill" />
+
+        <Button
+                x:Name="ScrapeFindUBtn"
+                Text="Query FindU Database" 
+                Clicked="OnScrapeFindUClicked"
+                HorizontalOptions="Fill" />
+
+        <Button
+                x:Name="LoadSampleDataBtn"
+                Text="Load Sample FindU Station Data" 
+                Clicked="OnLoadSampleDataClicked"
+                HorizontalOptions="Fill" />
+
+        <ActivityIndicator 
+                x:Name="LoadingIndicator" 
+                IsRunning="False" 
+                IsVisible="False" 
+                HorizontalOptions="Center" />
+
+        <CollectionView 
+                x:Name="WeatherStationsCollectionView"
+                ItemsSource="{Binding WeatherStations}"
+                HeightRequest="300"
+                SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="5" Padding="10" Stroke="LightGray">
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Label Grid.Column="0" Grid.Row="0" Text="Station:" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding CallSign}" />
+
+                            <Label Grid.Column="0" Grid.Row="1" Text="Temp:" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding Temperature, StringFormat='{0}°F'}" />
+
+                            <Label Grid.Column="0" Grid.Row="2" Text="Wind:" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding WindSpeed, StringFormat='{0} mph'}" />
+
+                            <Label Grid.Column="0" Grid.Row="3" Text="Humidity:" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Grid.Row="3" Text="{Binding Humidity, StringFormat='{0}%'}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>
