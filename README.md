@@ -8,6 +8,8 @@ Whereas there are many solutions for accessing aggregated and averaged weather d
 
 Uses are myriad, but the inspiration for this application comes from agriculture and land use planning.
 
+This kind of granular data is already being used in combination with Large Language Model AI to create personalized and microclimate-specific advice for farmers trying new crops and adaping crops to new climates.
+
 ## Data sources
 
 The most important dataset is citizen weather stations that are part of the CWOP network and provide data to Meterological Assimilation Data Ingest System (MADIS).
