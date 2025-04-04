@@ -79,6 +79,15 @@
 	  <Compile Update="LocationPage.xaml.cs">
 	    <DependentUpon>LocationPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="WeatherStationPage.xaml.cs">
+	    <DependentUpon>WeatherStationPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="WeatherStationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

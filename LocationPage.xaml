@@ -5,7 +5,7 @@
 
     <ScrollView>
         <VerticalStackLayout 
-            Padding="5,0,0,0"
+            Padding="6,0,0,0"
             Spacing="10"
             HorizontalOptions="Start">
 
@@ -18,7 +18,7 @@
                     VerticalOptions="Center">
                     
                     <Label  
-                        Text="Welcome! The first step is to enter GPS coordinates for the microclimate you are interested in exploring."
+                        Text="Welcome! The first step is to determine GPS coordinates for the microclimate you are interested in exploring."
                         VerticalOptions="Center"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
@@ -27,15 +27,32 @@
                         FontSize="18" />
 
                     <Label 
-                        x:Name="LocationResultLabel"
-                        Text="Active coordinates: None entered yet"                       
-                        VerticalOptions="Center"  
+                        Text="Active coordinates:"
+                        VerticalOptions="End"  
                         HorizontalOptions="Start" 
                         Margin="0,0,0,0" 
                         WidthRequest="400"
-                        HeightRequest="60"
                         FontFamily="Arial"
                         FontSize="24" />
+
+                    <Label 
+                        x:Name="LocationResultLabel"
+                        Text="None entered"                       
+                        VerticalOptions="End"  
+                        HorizontalOptions="Start" 
+                        Margin="0,0,0,0" 
+                        WidthRequest="400"
+                        FontFamily="Arial"
+                        FontSize="24" />
+
+                    <Button
+                        x:Name="NextButton"
+                        Text="Next"
+                        Clicked="OnNextButtonClicked"
+                        WidthRequest="400"
+                        HorizontalOptions="Start"
+                        VerticalOptions="End"
+                        IsEnabled="False" />
 
                 </VerticalStackLayout>
 
@@ -53,45 +70,7 @@
                   FontFamily="Arial"
                   FontSize="18" />
             <Label 
-                Text="Option 1: Request location from this device"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
-
-            <Button
-                x:Name="GetLocationBtn"
-                Text="Query Device Location" 
-                Clicked="OnGetLocationClicked"
-                HorizontalOptions="Fill" />
-
-            <Label 
-                Text="Option 2: Geocoding"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
-
-            <Label Text="Search for GPS coordinates by location name:" />
-
-            <HorizontalStackLayout
-                Spacing="10">
-                
-                <Entry 
-                    x:Name="LocationNameEntry"
-                    Placeholder="Address, Zip Code, City and State, etc."
-                    HorizontalOptions="FillAndExpand" />
-
-                <Entry 
-                    x:Name="ApiKeyEntry"
-                    Placeholder="OpenCage API Key"
-                    HorizontalOptions="FillAndExpand" />
-                
-            </HorizontalStackLayout>
-
-            <Button
-                Text="Search for location"
-                Clicked="OnGeocodeLocationClicked"
-                HorizontalOptions="Fill" />
-
-            <Label 
-                Text="Option 3: Manual GPS coordinate entry"
+                Text="Option 1: Manual GPS coordinate entry"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
@@ -118,6 +97,44 @@
             <Button
                 Text="Use Manual Coordinates"
                 Clicked="OnManualLocationClicked"
+                HorizontalOptions="Fill" />
+            
+            <Label 
+                Text="Option 2: Request location from this device"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Button
+                x:Name="GetLocationBtn"
+                Text="Query Device Location" 
+                Clicked="OnGetLocationClicked"
+                HorizontalOptions="Fill" />
+
+            <Label 
+                Text="Option 3: Geocoding"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Label Text="Search the OpenCage database by location name such as street address, city, state, country:" />
+
+            <HorizontalStackLayout
+                Spacing="10"/>
+
+            <Entry 
+                    x:Name="LocationNameEntry"
+                    Placeholder="Location name"
+                    HorizontalOptions="FillAndExpand" />
+
+            <Entry 
+                    x:Name="ApiKeyEntry"
+                    Placeholder="OpenCage API Key"
+                    HorizontalOptions="FillAndExpand" />
+
+
+
+            <Button
+                Text="Search for location"
+                Clicked="OnGeocodeLocationClicked"
                 HorizontalOptions="Fill" />
 
             <!-- Weather Station Section -->
@@ -174,6 +191,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 

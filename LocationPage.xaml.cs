@@ -10,6 +10,9 @@ namespace Microclimate_Explorer
 
         public ObservableCollection<WeatherStation> WeatherStations { get; set; } = new ObservableCollection<WeatherStation>();
 
+        private double _lastLatitude;
+        private double _lastLongitude;
+
         public LocationPage(LocationService locationService, GeocodingService geocodingService, WebScrapingService webScrapingService)
         {
             InitializeComponent();
@@ -18,6 +21,74 @@ namespace Microclimate_Explorer
             _webScrapingService = webScrapingService;
 
             BindingContext = this;
+        }
+
+        private Task NavigateToWeatherStationPage()
+        {
+            return Navigation.PushAsync(new WeatherStationPage(_lastLatitude, _lastLongitude));
+        }
+
+        private async void OnNextButtonClicked(object sender, EventArgs e)
+        {
+            if (double.TryParse(LatitudeEntry.Text, out double latitude) && double.TryParse(LongitudeEntry.Text, out double longitude))
+            {
+                _lastLatitude = latitude;
+                _lastLongitude = longitude;
+                await NavigateToWeatherStationPage();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Please enter valid latitude and longitude values.", "OK");
+            }
+        }
+
+        private void OnManualLocationClicked(object sender, EventArgs e)
+        {
+            var (latitude, longitude) = _locationService.GetLocationByCoordinates(
+                LatitudeEntry.Text,
+                LongitudeEntry.Text
+            );
+
+            if (latitude == 0 && longitude == 0)
+            {
+                LocationResultLabel.Text = "Invalid coordinates. Please enter valid numbers.";
+                NextButton.IsEnabled = false;
+            }
+            else
+            {
+                _lastLatitude = latitude;
+                _lastLongitude = longitude;
+                LocationResultLabel.Text = $"{latitude}, {longitude}";
+                NextButton.IsEnabled = true;
+            }
+        }
+
+        private async void OnGetLocationClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var (latitude, longitude) = await _locationService.GetCurrentLocationAsync();
+
+                if (latitude == 0 && longitude == 0)
+                {
+                    await DisplayAlert("Location Error",
+                        "Could not retrieve current location. Please enter coordinates manually.",
+                        "OK");
+                    NextButton.IsEnabled = false;
+                }
+                else
+                {
+                    _lastLatitude = latitude;
+                    _lastLongitude = longitude;
+                    LocationResultLabel.Text = $"{latitude}, {longitude}";
+                    NextButton.IsEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+                NextButton.IsEnabled = false;
+            }
         }
 
         private async void OnGeocodeLocationClicked(object sender, EventArgs e)
@@ -46,60 +117,22 @@ namespace Microclimate_Explorer
                     await DisplayAlert("Geocoding Error",
                         "Could not find coordinates for the given location. Please try a different location.",
                         "OK");
+                    NextButton.IsEnabled = false;
                 }
                 else
                 {
-                    LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
-
-                    // Optionally, pre-fill the latitude and longitude entries
+                    _lastLatitude = latitude;
+                    _lastLongitude = longitude;
+                    LocationResultLabel.Text = $"{latitude}, {longitude}";
                     LatitudeEntry.Text = latitude.ToString();
                     LongitudeEntry.Text = longitude.ToString();
+                    NextButton.IsEnabled = true;
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-            }
-        }
-
-
-        private async void OnGetLocationClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                var (latitude, longitude) = await _locationService.GetCurrentLocationAsync();
-
-                if (latitude == 0 && longitude == 0)
-                {
-                    await DisplayAlert("Location Error",
-                        "Could not retrieve current location. Please enter coordinates manually.",
-                        "OK");
-                }
-                else
-                {
-                    LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-            }
-        }
-
-        private void OnManualLocationClicked(object sender, EventArgs e)
-        {
-            var (latitude, longitude) = _locationService.GetLocationByCoordinates(
-                LatitudeEntry.Text,
-                LongitudeEntry.Text
-            );
-
-            if (latitude == 0 && longitude == 0)
-            {
-                LocationResultLabel.Text = "Invalid coordinates. Please enter valid numbers.";
-            }
-            else
-            {
-                LocationResultLabel.Text = $"Active coordinates: {latitude}, {longitude}";
+                NextButton.IsEnabled = false;
             }
         }
 
