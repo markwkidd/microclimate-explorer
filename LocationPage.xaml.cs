@@ -127,14 +127,5 @@ namespace Microclimate_Explorer
             }
         }
 
-        private void UpdateWeatherStationsList(List<WeatherStation> weatherStations)
-        {
-            WeatherStations.Clear();
-
-            foreach (var station in weatherStations)
-            {
-                WeatherStations.Add(station);
-            }
-        }
     }
 }

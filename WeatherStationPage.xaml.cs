@@ -31,37 +31,13 @@ namespace Microclimate_Explorer
                 LoadingIndicator.IsVisible = true;
                 LoadingIndicator.IsRunning = true;
 
-                // Get the sample file path
                 string sampleFilePath = Path.Combine(FileSystem.AppDataDirectory, "Resources", "Examples", "eastern-ky-weather-stations.htm");
 
-                // For testing purposes, we'll use a file URI to load the sample data
-                // In a real app, you would ensure the file exists or extract it from resources
-                if (!File.Exists(sampleFilePath))
-                {
-                    // For testing, copy the file from app resources to app data directory
-                    using var stream = await FileSystem.OpenAppPackageFileAsync("Resources/Examples/eastern-ky-weather-stations.htm");
-                    if (stream != null)
-                    {
-                        var directory = Path.GetDirectoryName(sampleFilePath);
-                        if (!Directory.Exists(directory))
-                            Directory.CreateDirectory(directory);
-
-                        using var fileStream = File.Create(sampleFilePath);
-                        await stream.CopyToAsync(fileStream);
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error", "Sample data file not found in resources.", "OK");
-                        return;
-                    }
-                }
-
-                // Load weather data from the local file
                 var weatherStations = await _webScrapingService.LoadWeatherDataFromFileAsync(sampleFilePath);
 
-                UpdateWeatherStationsList(weatherStations);
+                FindNearestStations(weatherStations);
 
-                await DisplayAlert("Success", $"Loaded {weatherStations.Count} weather stations from sample data.", "OK");
+                await DisplayAlert("Success", $"Loaded weather stations from local example data.", "OK");
             }
             catch (Exception ex)
             {
@@ -91,9 +67,9 @@ namespace Microclimate_Explorer
 
                 var weatherStations = await _webScrapingService.ScrapeWeatherStationsAsync(url);
 
-                UpdateWeatherStationsList(weatherStations);
+                FindNearestStations(weatherStations);
 
-                await DisplayAlert("Success", $"Scraped {weatherStations.Count} weather stations from the web.", "OK");
+                await DisplayAlert("Success", $"Scraped {weatherStations.Count} nearby weather stations from the web.", "OK");
             }
             catch (Exception ex)
             {
@@ -106,11 +82,14 @@ namespace Microclimate_Explorer
             }
         }
 
-        private void UpdateWeatherStationsList(List<WeatherStation> weatherStations)
+        private void FindNearestStations(List<WeatherStation> weatherStations)
         {
             WeatherStations.Clear();
 
-            foreach (var station in weatherStations)
+            // Sort the weather stations by distance and take the four closest
+            var closestStations = weatherStations.OrderBy(ws => ws.Distance).Take(4);
+
+            foreach (var station in closestStations)
             {
                 WeatherStations.Add(station);
             }
