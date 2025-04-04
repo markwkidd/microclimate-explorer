@@ -115,8 +115,6 @@ namespace Microclimate_Explorer
                     _lastLatitude = latitude;
                     _lastLongitude = longitude;
                     LocationResultLabel.Text = $"{latitude}, {longitude}";
-                    LatitudeEntry.Text = latitude.ToString();
-                    LongitudeEntry.Text = longitude.ToString();
                     NextButton.IsEnabled = true;
                 }
             }
