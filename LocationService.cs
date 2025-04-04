@@ -39,15 +39,18 @@ namespace Microclimate_Explorer
             if (double.TryParse(latitudeStr, out double latitude) &&
                 double.TryParse(longitudeStr, out double longitude))
             {
-                // Optional: Add basic validation for coordinate ranges
-                if (latitude >= -90 && latitude <= 90 &&
-                    longitude >= -180 && longitude <= 180)
+                if (ValidateCoordinates(latitude, longitude))
                 {
                     return (latitude, longitude);
                 }
             }
 
             return (0, 0);
+        }
+        public static bool ValidateCoordinates(double latitude, double longitude)
+        {
+            return latitude >= -90 && latitude <= 90 &&
+                   longitude >= -180 && longitude <= 180;
         }
     }
 }

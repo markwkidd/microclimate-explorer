@@ -30,10 +30,8 @@ namespace Microclimate_Explorer
 
         private async void OnNextButtonClicked(object sender, EventArgs e)
         {
-            if (double.TryParse(LatitudeEntry.Text, out double latitude) && double.TryParse(LongitudeEntry.Text, out double longitude))
+            if (LocationService.ValidateCoordinates(_lastLatitude, _lastLongitude))
             {
-                _lastLatitude = latitude;
-                _lastLongitude = longitude;
                 await NavigateToWeatherStationPage();
             }
             else
@@ -186,7 +184,7 @@ namespace Microclimate_Explorer
             }
         }
 
-        private async void OnScrapeWebClicked(object sender, EventArgs e)
+        private async void OnScrapeFindUClicked(object sender, EventArgs e)
         {
             try
             {
