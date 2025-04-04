@@ -26,23 +26,26 @@ Version 0.1 of Microclimate Explorer requires an OpenCage API key in order to co
 
 ## Technology and frameworks
 
-- C# MAUI Blazor
-- Modular code with object-oriented data structures
-- OpenCage geocoding API
-- FindU weather station data web API scraper (scraper used with permission)
+- C# MAUI Blazor.
+- Modular code with object-oriented data structures.
+- OpenCage geocoding API.
+- FindU weather station data web API scraper (scraper used with permission).
+- GitHub Copilot and Claude AI for code prototyping and debugging.
 
 ### Software development features
 
 - Use of a list data structure
 - Package sample FindU data with the .NET solution that can be parsed from local file storage
 - Write a text JSON file to save a configuration setting
-- TODO: Regular expression (regex) for input validation
-- TODO: Code comments relecting use of SOLID principles
-- TODO: Use of a new generic class
+
+## TODO
+
+- Regular expression (regex) for input validation. There is only simple validation now.
+- Code comments relecting use of SOLID principles.
+- Mapping for the initial coordinates and nearby weather stations.
+- Use of a new generic class.
 
 ## Building this project
-
-On the developer's Visual Studio workstation, it was necessary to install Selenium via NuGet.
 
 ### .Net Packages for Windows 10
 
@@ -54,3 +57,10 @@ On the developer's Visual Studio workstation, it was necessary to install Seleni
    > System.Net.Http.Json                    7.0.1       7.0.1   
 ```
 
+### FindU test data
+
+The failing FindU system that is being minimally maintained by NOAA only stores and mangages data that is freely available elsewhere, but at present it the FindU API remains the only way to access certain reports.
+
+Because the FindU geocoded database of stations is no longer available via API, the providers allow concienctious scraping of weather station data from the remaining parts of the FindU website.
+
+There is a file named `sample-findu-data-weather-stations.htm` which can be used to test the parsing of FindU's location-based station search without accessing the server. The location where it must be saved will differ based on system; an error message will display the correct path if you try to parse it when the file is not located at the correct path.
