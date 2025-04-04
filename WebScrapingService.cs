@@ -57,7 +57,7 @@ namespace Microclimate_Explorer
                 {
                     driver.Navigate().GoToUrl(url);
 
-                    // Wait for table to load
+                    // load table
                     var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                     wait.Until(d => d.FindElements(By.TagName("table")).Count > 0);
 

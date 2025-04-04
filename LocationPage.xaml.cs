@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
 
 namespace Microclimate_Explorer
 {
@@ -20,7 +22,71 @@ namespace Microclimate_Explorer
             _geocodingService = geocodingService;
             _webScrapingService = webScrapingService;
 
+            CheckForApiKeyFile();
+
             BindingContext = this;
+        }
+
+        private void CheckForApiKeyFile()
+        {
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, "microclimate-explorer-lowsecurity.txt");
+            if (File.Exists(filePath))
+            {
+                var json = File.ReadAllText(filePath);
+                var apiKeyData = JsonSerializer.Deserialize<ApiKeyData>(json);
+                if (apiKeyData != null)
+                {
+                    ApiKeyEntry.Text = apiKeyData.OpenCageApiKey;
+                }
+            }
+        }
+
+        private async void OnSaveApiKeyClicked(object sender, EventArgs e)
+        {
+            var apiKey = ApiKeyEntry.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(apiKey))
+            {
+                await DisplayAlert("Error", "Please enter an OpenCage API key", "OK");
+                return;
+            }
+
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, "microclimate-explorer-lowsecurity.txt");
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            var apiKeyData = new ApiKeyData { OpenCageApiKey = apiKey };
+            var json = JsonSerializer.Serialize(apiKeyData);
+            File.WriteAllText(filePath, json);
+
+            await DisplayAlert("Success", "OpenCage API key saved successfully", "OK");
+        }
+
+        private async void OnDeleteApiKeyClicked(object sender, EventArgs e)
+        {
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, "microclimate-explorer-lowsecurity.txt");
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath);
+                    await DisplayAlert("Success", "OpenCage API key file deleted successfully", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", $"An error occurred while deleting the OpenCage API key file: {ex.Message}", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "OpenCage API key file does not exist", "OK");
+            }
+        }
+
+        private class ApiKeyData
+        {
+            public string OpenCageApiKey { get; set; }
         }
 
         private Task NavigateToWeatherStationPage()
@@ -54,7 +120,6 @@ namespace Microclimate_Explorer
                 NextButton.IsEnabled = true;
             }
         }
-
 
         private async void OnGetLocationClicked(object sender, EventArgs e)
         {

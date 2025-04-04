@@ -35,7 +35,7 @@ Version 0.1 of Microclimate Explorer requires an OpenCage API key in order to co
 
 - Use of a list data structure
 - Package sample FindU data with the .NET solution that can be parsed from local file storage
-- TODO: Write a text log file
+- Write a text JSON file to save a configuration setting
 - TODO: Regular expression (regex) for input validation
 - TODO: Code comments relecting use of SOLID principles
 - TODO: Use of a new generic class

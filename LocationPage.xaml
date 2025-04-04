@@ -5,11 +5,12 @@
 
     <ScrollView>
         <VerticalStackLayout 
-            Padding="15,0,0,0"
+            Padding="5,0,0,0"
             Spacing="10"
             HorizontalOptions="Start">
 
             <HorizontalStackLayout
+                Padding="10,0,0,0"   
                 Spacing="10"
                 HorizontalOptions="Start">
 
@@ -99,8 +100,7 @@
 
                     </HorizontalStackLayout>
 
-
-                    <Button
+                <Button
                     Text="Use Manual Coordinates"
                     Clicked="OnManualLocationClicked"
                     WidthRequest="350"
@@ -151,6 +151,14 @@
             FontFamily="Arial"
             FontSize="18" />
 
+                    <Label  
+Text="For the United States, include state or territory and country in your query."
+VerticalOptions="Center"  
+HorizontalOptions="Start" 
+Margin="0,10,0,0" 
+FontFamily="Arial"
+FontSize="18" />
+
                     <Entry 
                 x:Name="LocationNameEntry"
                 Placeholder="Location name"
@@ -161,17 +169,22 @@
                 Placeholder="OpenCage API Key"
                 HorizontalOptions="FillAndExpand" />
 
-                    <HorizontalStackLayout
-Spacing="10">
+                    
                         <Button
             Text="Search for location by name"
             Clicked="OnGeocodeLocationClicked"
             WidthRequest="350"
             HorizontalOptions="Start" />
-
+                    <HorizontalStackLayout
+Spacing="10">
                     <Button
-            Text="TODO: Save OpenCage API key to file"
-            IsEnabled="False"
+            Text="Save OpenCage API key to file"
+            Clicked="OnSaveApiKeyClicked"
+            WidthRequest="350"
+            HorizontalOptions="Start" />
+                    <Button
+            Text="Delete OpenCage API key file"
+            Clicked="OnDeleteApiKeyClicked"
             WidthRequest="350"
             HorizontalOptions="Start" />
                     </HorizontalStackLayout>
