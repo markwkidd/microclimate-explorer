@@ -12,9 +12,13 @@ The most important dataset is citizen weather stations. This data is aggregated 
 
 Microclimate Explorer make use of this data ultimately aggregated by the Meterological Assimilation Data Ingest System (MADIS). This data was generally processed by the findU database of weather, position, telemetry, and message data.
 
-## Implementation
+## API Keys
 
-### Technology and frameworks
+Version 0.1 of Microclimate Explorer requires an OpenCage API key in order to convert place names and addresses into latitude and longitude, although that is not the only way to enter coordinates into this software. A key is available from the author, and you can get a free API key at [OpenCage](https://opencagedata.com/).
+
+# Implementation
+
+## Technology and frameworks
 
 - C# MAUI Blazor
 - Modular code with object-oriented data structures
@@ -30,7 +34,7 @@ Microclimate Explorer make use of this data ultimately aggregated by the Meterol
 - TODO: Code comments relecting use of SOLID principles
 - TODO: Use of a new generic class
 
-## Building and running this project
+## Building this project
 
 On the developer's Visual Studio workstation, it was necessary to install Selenium via NuGet.
 
