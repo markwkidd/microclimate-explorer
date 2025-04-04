@@ -12,7 +12,7 @@ Uses are myriad, but the inspiration for this application comes from agriculture
 
 The most important dataset is citizen weather stations that are part of the CWOP network and provide data to Meterological Assimilation Data Ingest System (MADIS).
 
-### Using discontinued FindU API
+### Using FindU API
 
 **Please note:** Microclimate Explorer v0.1 relies on the FindU database and API for geographical search of CWOP stations. During the course of development, the author communicated with NOAA, which hosts FindU because of trouble using some functionality. NOAA staff indicated that FindU was remaining online, but was no longer being maintained and some parts have failed.
 

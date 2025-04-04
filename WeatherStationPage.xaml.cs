@@ -69,11 +69,11 @@ namespace Microclimate_Explorer
 
                 FindNearestStations(weatherStations);
 
-                await DisplayAlert("Success", $"Scraped {weatherStations.Count} nearby weather stations from the web.", "OK");
+                await DisplayAlert("Success", $"Received data for nearby weather stations.", "OK");
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to scrape web data: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Failed to receive weather station data: {ex.Message}", "OK");
             }
             finally
             {
